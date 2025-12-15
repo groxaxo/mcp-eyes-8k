@@ -249,7 +249,7 @@ def _repair_json(raw_input: Union[str, Dict, List, None], model: str) -> Dict:
         start = cleaned.find('{')
         end = cleaned.rfind('}')
         if start != -1 and end != -1:
-             return json.loads(cleaned[start:end+1])
+            return json.loads(cleaned[start:end+1])
         return json.loads(cleaned)
     except Exception:
         return {"error": "JSON Parse Failed", "raw_output": raw_text[:500] + "..."}
@@ -275,10 +275,10 @@ def examine_image(
     try:
         # 1. Strict Validation
         if mode not in ALLOWED_MODES:
-             return {"error": f"Invalid mode '{mode}'. Allowed: {sorted(list(ALLOWED_MODES))}", "path": path}
+            return {"error": f"Invalid mode '{mode}'. Allowed: {sorted(list(ALLOWED_MODES))}", "path": path}
 
         if mode == "query" and not question:
-             return {"error": "Parameter 'question' is required when mode='query'", "path": path}
+            return {"error": "Parameter 'question' is required when mode='query'", "path": path}
 
         safe_path = _validate_path(path)
         region_norm = [int(c) for c in region] if region else None
@@ -310,7 +310,7 @@ def examine_image(
 
         user_content_text = "Analyze."
         if mode == "query" and question:
-             user_content_text = f"Answer this question strictly based on the image: {question}"
+            user_content_text = f"Answer this question strictly based on the image: {question}"
 
         messages = [
             {"role": "system", "content": system_prompt},
