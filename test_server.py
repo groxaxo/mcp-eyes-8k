@@ -8,6 +8,8 @@ import time
 import sys
 import os
 import signal
+import traceback
+from pathlib import Path
 
 def test_server_startup():
     """Test if the MCP server starts correctly."""
@@ -17,7 +19,9 @@ def test_server_startup():
     
     # Set environment variables
     env = os.environ.copy()
-    env["VISION_BASE_DIR"] = "/home/runner/work/mcp-eyes-8k/mcp-eyes-8k/test_images"
+    # Use path relative to script location for portability
+    script_dir = Path(__file__).parent
+    env["VISION_BASE_DIR"] = str(script_dir / "test_images")
     
     print("\nStarting server...")
     print("Command: python active_vision.py")
@@ -86,7 +90,6 @@ def test_server_startup():
             
     except Exception as e:
         print(f"✗ Error starting server: {e}")
-        import traceback
         traceback.print_exc()
         return False
 
@@ -108,7 +111,6 @@ def check_imports():
         return True
     except Exception as e:
         print(f"✗ Import failed: {e}")
-        import traceback
         traceback.print_exc()
         return False
 
@@ -132,7 +134,6 @@ def check_mcp_tool_registration():
         
     except Exception as e:
         print(f"✗ MCP registration check failed: {e}")
-        import traceback
         traceback.print_exc()
         return False
 

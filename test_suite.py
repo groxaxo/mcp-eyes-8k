@@ -6,6 +6,7 @@ This script tests the code without requiring actual API calls.
 
 import os
 import sys
+import traceback
 from pathlib import Path
 
 # Set up environment
@@ -240,7 +241,6 @@ def main():
         
     except Exception as e:
         print(f"\n✗ Test suite failed with error: {e}")
-        import traceback
         traceback.print_exc()
 
 if __name__ == "__main__":
