@@ -52,3 +52,6 @@ htmlcov/
 # Misc
 *.log
 .cache/
+
+# Test files
+test_images/
